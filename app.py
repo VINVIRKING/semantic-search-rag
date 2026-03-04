@@ -15,20 +15,22 @@ def load_model_and_data():
     model = SentenceTransformer("all-MiniLM-L6-v2")
     embeddings = model.encode(documents, show_progress_bar=True)
     embeddings = np.array(embeddings).astype("float32")
-dimension = embeddings.shape[1]
-index = faiss.IndexFlatL2(dimension)
-index.add(embeddings)
 
-generator = pipeline(
-    "text2text-generation",
-    model="google/flan-t5-base"
-)
-   return model, index, documents, generator
+    dimension = embeddings.shape[1]
+    index = faiss.IndexFlatL2(dimension)
+    index.add(embeddings)
+
+    generator = pipeline(
+        "text2text-generation",
+        model="google/flan-t5-base"
+    )
+
+    return model, index, documents, generator
+
 
 model, index, documents, generator = load_model_and_data()
 
 query = st.text_input("Enter your search query:")
-
 top_k = st.slider("Number of results:", 1, 5, 3)
 
 if st.button("Search") and query:
@@ -45,5 +47,4 @@ if st.button("Search") and query:
 
         st.markdown(f"### Result {i+1}")
         st.write(f"Similarity Score: {similarity:.4f}")
-
         st.write(documents[doc_index][:300])
