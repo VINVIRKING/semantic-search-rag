@@ -20,10 +20,9 @@ index = faiss.IndexFlatL2(dimension)
 index.add(embeddings)
 
 generator = pipeline(
-    "text-generation",
+    "text2text-generation",
     model="google/flan-t5-base"
 )
-
    return model, index, documents, generator
 
 model, index, documents, generator = load_model_and_data()
@@ -46,4 +45,5 @@ if st.button("Search") and query:
 
         st.markdown(f"### Result {i+1}")
         st.write(f"Similarity Score: {similarity:.4f}")
+
         st.write(documents[doc_index][:300])
