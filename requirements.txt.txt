@@ -1,0 +1,8 @@
+streamlit
+sentence-transformers
+datasets
+faiss-cpu
+transformers
+torch
+numpy
+scikit-learn
