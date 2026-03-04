@@ -2,6 +2,10 @@
 
 A semantic search engine powered by **Sentence Transformers, FAISS, and Retrieval-Augmented Generation (RAG)** deployed using **Streamlit**.
 
+## Live Demo
+
+https://semantic-search-rag-dxvcvuphrzr9t7nfwikehg.streamlit.app/
+
 ## Features
 
 - Semantic search using transformer embeddings
